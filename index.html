@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mod JS</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #box {
+            background-color: #22aaff;
+            height: 100px;
+            width: 100px;
+            box-shadow: 4px 8px 20px 4px #00000033;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        #btn {
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="pa" style="width:80%;height:80px;margin:0 auto;background-color:#f0f0f0;padding:20px">This just a test for
+        modular JS in
+        browser. Mousover on box changes color once. Clicking the box increases the size. The 2 functions for event
+        listeners are in
+        separate modular JS files.
+    </p>
+    <button id="btn">Reset</button>
+    <div id="box"></div>
+
+    <!--scripts-->
+
+    <script type="module" src="./makeBig.js"></script>
+    <script type="module" src="./changeCol.js"></script>
+    <script type="module">
+        import { makeBig } from './makeBig.js';
+        import { changeCol } from './changeCol.js';
+
+        var box = document.getElementById("box");
+        let pa = document.getElementById("pa")
+
+        box.addEventListener("mouseover", () => changeCol(box));
+        box.addEventListener("click", () => makeBig(box));
+    </script>
+
+</body>
+
+</html>
